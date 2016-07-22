@@ -22,7 +22,7 @@ class FollowCreateView(LoginRequiredMixin, CreateView):
         form.instance.follower = follower
         form.instance.following = following
 
-        if Follow.objects.get_or_create(follower=follower, following=following)[1] is True:
+        if not Follow.objects.filter(follower=follower, following=following).exists():
             messages.add_message(
                     self.request,
                     messages.SUCCESS,
