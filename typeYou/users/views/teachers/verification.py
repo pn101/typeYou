@@ -14,6 +14,7 @@ class TeacherVerification(View):
     def post(self, request, *args, **kwargs):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
         phonenumber = request.POST.get('phonenumber')
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -39,6 +40,7 @@ class TeacherVerification(View):
                             'site_name': 'Verification Code',
                             'first_name': first_name,
                             'last_name': last_name,
+                            'email': email,
                             'phonenumber': phonenumber,
                             'username': username,
                             'password': password,

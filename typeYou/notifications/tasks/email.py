@@ -26,7 +26,7 @@ class SendEmailTask(SendNotificationBaseTask):
         data = {
             'from': object.sender,
             'to': object.receiver,
-            'subject': 'Hello',
+            'subject': 'Welcome to typeYou',
             'text': object.content,
         }
         return data

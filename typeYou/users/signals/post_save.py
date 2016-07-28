@@ -41,9 +41,9 @@ def post_save_teacher(sender, instance, created, **kwargs):
                 content='Thank you for registering as a Teacher',
         )
         email = EmailNotification.objects.create(
-                sender=os.environ.get('EMAIL_SENDER'),
+                sender='Mailgun Sandbox <postmaster@sandbox61f776c58f814b4a9e82c975f94dcee0.mailgun.org>',
                 receiver=instance.email,
-                content=os.environ.get('EMAIL_CONTENT'),
+                content='Thank you for registering at typeYou. You are truly awesome!',
         )
         instance.save()
 
