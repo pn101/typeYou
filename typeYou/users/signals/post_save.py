@@ -1,3 +1,5 @@
+import os
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import Permission
@@ -39,9 +41,9 @@ def post_save_teacher(sender, instance, created, **kwargs):
                 content='Thank you for registering as a Teacher',
         )
         email = EmailNotification.objects.create(
-                sender='Mailgun Sandbox <postmaster@sandbox61f776c58f814b4a9e82c975f94dcee0.mailgun.org>',
+                sender=os.environ.get('EMAIL_SENDER'),
                 receiver=instance.email,
-                content='Congratulations woojong, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.',
+                content=os.environ.get('EMAIL_CONTENT'),
         )
         instance.save()
 
